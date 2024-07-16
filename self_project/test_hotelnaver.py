@@ -5,9 +5,12 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from datetime import datetime, timedelta
-import get_data_excel
+from get_data_excel import search_get_excel_data
 from select_element import select_element, select_elements
 from selenium.webdriver.common.action_chains import ActionChains
+
+
+# hotels.naver.com 에서 호텔을 검색합니다.
 
 idx = 0
 
@@ -159,7 +162,7 @@ def main():
     browser.get(url)
 
     file_path = 'data_value.xlsx'
-    excel_data_list = get_data_excel.get_excel_data(file_path)
+    excel_data_list = search_get_excel_data(file_path)
     for index, ed in enumerate(excel_data_list):
         try:
             place = ed[0]
