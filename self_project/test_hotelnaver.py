@@ -5,9 +5,10 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from datetime import datetime, timedelta
-from get_data_excel import search_get_excel_data
+from get_data_excel import search_get_excel_data, filter_get_excel_data
 from select_element import select_element, select_elements
 from selenium.webdriver.common.action_chains import ActionChains
+import hotel_list_filtering
 
 
 # hotels.naver.com 에서 호텔을 검색합니다.
@@ -155,11 +156,7 @@ def test_select_member(browser, target_value, kids_ages):
             select_elements(browser, By.XPATH, "//option[@value='{}']".format(kids_ages_value))[num].click()
 
 
-def main():
-    # chrome driver 를 사용하여 네이버 호텔 예약 페이지 이동
-    url = "https://hotels.naver.com/"
-    browser = webdriver.Chrome()
-    browser.get(url)
+def hotel_naver_search(browser):
 
     file_path = 'data_value.xlsx'
     excel_data_list = search_get_excel_data(file_path)
@@ -188,18 +185,25 @@ def main():
             except:
                 try:
                     select_element(browser, By.CLASS_NAME, "SearchList_anchor__rS3VX")
+                    print("검색 완료")
                 except:
                     print("결과를 찾을 수 없습니다.")
             # 
-            # 브라우저 뒤로가기 후 잠시 기다리기
-            browser.back()
+            excel_data_list = filter_get_excel_data(file_path)
+            hotel_list_filtering.hotel_naver_filtering(browser, excel_data_list[index])
+            # 
+            print("필터링 완료.")
+            # 브라우저 검색 페이지로 이동 후 footer 나올때까지 기다리기
+            browser.get("https://hotels.naver.com/")
             select_element(browser, By.CLASS_NAME, "Footer_limitation__To1W3")
             time.sleep(1)
             print(f"{index+1}번째 값 테스트 성공했습니다.")
         except:
             print(f"{index+1}번째 값에 문제가 있습니다. 다시한 번 확인해주세요.")
-    input
 
     
 if __name__== "__main__":
-   main()
+    url = "https://hotels.naver.com/"
+    browser = webdriver.Chrome()
+    browser.get(url)
+    hotel_naver_search(browser)

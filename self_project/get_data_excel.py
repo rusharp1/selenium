@@ -19,7 +19,7 @@ def search_get_excel_data(file_path):
 
 
 #  호텔 검색 완료 페이지이서 사용할 필터 값.
-def list_get_excel_data(file_path):
+def filter_get_excel_data(file_path):
     workbook = openpyxl.load_workbook(file_path)
     ws = workbook.active
     # 
@@ -32,9 +32,16 @@ def list_get_excel_data(file_path):
                 row_list[idx] = tmp
             elif not(row_value):
                 row_list[idx] = []
+            else:
+                row_list[idx] = [row_list[idx]]
         excel_value.append(row_list)
     # 
     return excel_value
 
-print(list_get_excel_data('data_value.xlsx'))
-print(search_get_excel_data('data_value.xlsx'))
+if __name__== "__main__":
+    tmp = filter_get_excel_data('data_value.xlsx')
+    for v in tmp:
+        print(v)
+    tmp = search_get_excel_data('data_value.xlsx')
+    for v in tmp:
+        print(v)
