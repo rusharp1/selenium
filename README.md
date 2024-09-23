@@ -40,6 +40,7 @@ python 자동화 폴더에 python, selenium 및 bs4 를 사용한 `테스트 환
 3. 명령어 실행 예시
     <details>
       <summary>명령어 실행 예시 보기/접기</summary>
+      
       - 프로젝트 업무 추가  
         https://youtu.be/5_KhX62uhp4
         
@@ -51,4 +52,5 @@ python 자동화 폴더에 python, selenium 및 bs4 를 사용한 `테스트 환
         
       - 프로젝트 마일스톤 추가  
         https://youtu.be/3Cfc3W3_BGc
+    
     </details>
