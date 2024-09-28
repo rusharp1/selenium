@@ -8,6 +8,11 @@ from selenium.webdriver import ActionChains
 import time
 import sys
 
+domain = ""
+id = ""
+pw = ""
+
+
 def bs4_setting():
     return BeautifulSoup(browser.page_source, "lxml")
 
@@ -79,7 +84,7 @@ def send_mail():
         id = input("받는 사람 id를 입력해주세요(종료는 엔터키) : ")
         if (len(id) == 0):
             break
-        new_mail_textbox[0].send_keys("{}@doorayqa.dooray.com;".format(id))
+        new_mail_textbox[0].send_keys("{}@{}.dooray.com;".format(id, domain))
     while(1):
         title = input("제목을 입력해주세요 : ")
         if (len(title) > 0):
@@ -284,13 +289,11 @@ options = webdriver.ChromeOptions()
 # 화면에 아이콘을 띄우지못해 찾을수 없을때가있음. 윈도우사이즈 지정함으로써 해결
 options.add_argument('--window-size=1920x1080')
 browser = webdriver.Chrome(options= options)
-url = "https://doorayqa.dooray.com/mail"
+url = "https://{domain}.dooray.com/mail"
 browser.get(url)
 browser.maximize_window()
-# insert_id = input("id를 입력하세요 : ")
-# insert_pw = input("pw를 입력하세요 : ")
-insert_id = "jtest"
-insert_pw = "test123!"
+insert_id = "{id}"
+insert_pw = "{pw}"
 
 ######### 로그인 과정 #########
 id = browser.find_elements(By.XPATH, "//span[@class='input-box']/input")
@@ -300,7 +303,7 @@ id[1].send_keys(Keys.ENTER)
 
 ######### 리뉴얼 팝업 닫기 ###########
 # 다른 서비스로 이동한 경우를 대비하여 다시한번 메일로 이동시킴
-url = "https://doorayqa.dooray.com/mail"
+url = "https://{domain}.dooray.com/mail"
 browser.get(url)
 wait_until('//button[@class="css-1ihu6zl"]').click()
 wait_until('//span[@class = "css-1oteowz"]').click()

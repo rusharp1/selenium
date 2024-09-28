@@ -7,6 +7,11 @@ from selenium.webdriver.support import expected_conditions as EC
 import time
 import sys
 
+domain = ""
+id = ""
+pw = ""
+
+
 def bs4_setting():
     return BeautifulSoup(browser.page_source, "lxml")
 
@@ -253,7 +258,7 @@ options = webdriver.ChromeOptions()
 options.add_argument('--window-size=1920x1080')
 browser = webdriver.Chrome(options= options)
 
-url = "https://doorayqa.dooray.com/task"
+url = "https://{domain}.dooray.com/task"
 browser.get(url)
 
 # insert_id = input("id를 입력하세요 : ")

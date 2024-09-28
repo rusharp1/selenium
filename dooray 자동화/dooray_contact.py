@@ -7,6 +7,9 @@ from selenium.webdriver.support import expected_conditions as EC
 import time
 import sys
 
+domain = ""
+id = ""
+pw = ""
 
 def bs4_setting():
     return BeautifulSoup(browser.page_source, "lxml")
@@ -194,13 +197,12 @@ options = webdriver.ChromeOptions()
 options.add_argument('--window-size=1920x1080')
 browser = webdriver.Chrome(options= options)
 
-url = "https://doorayqa.dooray.com/contacts"
+url = "https://{domain}.dooray.com/contacts"
 browser.get(url)
 
-# insert_id = input("id를 입력하세요 : ")
-# insert_pw = input("pw를 입력하세요 : ")
-insert_id = "jtest1"
-insert_pw = "test123!"
+
+insert_id = "{id}"
+insert_pw = "{pw}"
 
 ######### 로그인 과정 #########
 id = browser.find_elements(By.XPATH, "//span[@class='input-box']/input")
@@ -209,7 +211,7 @@ id[1].send_keys(insert_pw)
 id[1].send_keys(Keys.ENTER)
 
 ######### 리뉴얼 얼럿 닫기 ###########
-url = "https://doorayqa.dooray.com/contacts"
+url = "https://{domain}.dooray.com/contacts"
 browser.get(url)
 wait_until('//button[@class="css-1ihu6zl"]').click()
 
@@ -218,7 +220,7 @@ wait_until('//button[@class="css-1ihu6zl"]').click()
 
 # 자동분류정책 나올때까지 대기함
 
-# if (insert_id == "jtest"):
+# if (insert_id == " "):
 #     wait_until( '//span[@class = "hide-text v2-icons-popup-x"]')
 
 #     # 자동분류정책 본문 가져옴.
