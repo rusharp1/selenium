@@ -2,7 +2,7 @@
 
 # selenium
 
-> python 과 api를 사용하여 웹사이트를 조작 및 응용.
+> python 과 selenium, bs4 사용하여 웹사이트를 조작 및 응용.
 
 [![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https://github.com/rusharp1/selenium&count_bg=%233B3B3B&title_bg=%23B178BE&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false)](https://hits.seeyoufarm.com)
 
