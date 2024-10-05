@@ -118,5 +118,66 @@
     ```
     파일명.py
     ```
+
+
+## 2. 네이버 숙소예약 자동화
+### 1\. 프로젝트 목록
+
+
+## 3.selenium 기초 (Selenium Basics)
+### 1. 개요 (Overview)
+
+#### 1. 저장소 개요  (Repository Overview)
+*  이 저장소는  [Inflearn](https://www.inflearn.com/course/%ED%8C%8C%EC%9D%B4%EC%8D%AC-%EC%9B%B9-%EC%8A%A4%ED%81%AC%EB%9E%98%ED%95%91#curriculum)의 Selenium 기초 강의를 기반으로 한 연습 문제와 예제를 담고 있습니다.
+* 더 자세한 내용을 보고싶다면, [blog](https://rusharp.tistory.com/category/python/python_selenium) 에서 확인 가능합니다.
+
+#### 2. 강의 개요 (Course Overview) 
+* 이 강의는 Selenium 을 사용하여 파이썬으로 웹 브라우저를 자동화하고, 웹 스크래핑 및 크롤링 작업을 실습하는 데 중점을 둡니다.
+다양한 도구와 라이브러리를 학습하며, 기본부터 고급 주제까지 다룹니다.
+*** 
+### 2. 주요 학습 내용 (Main Learning Contents)
+
+#### 1. 웹 스크래핑 소개 (Introduction to Web Scraping)
+1. 웹 스크래핑이란?
+    - 웹 스크래핑은 웹사이트로부터 데이터를 자동으로 추출하는 과정을 말합니다. 이는 API가 제공되지 않는 웹사이트에서 데이터를 수집할 때 유용합니다.
+
+#### 2. HTML 및 CSS 이해  (Understanding HTML and CSS)
+   - HTML 구조: 요소, 태그, 속성에 대한 이해
+   - CSS 선택자: 스타일을 기반으로 요소를 찾고 추출하는 방법
+   - 웹 스크래핑 준비: 페이지에서 적절한 요소를 대상으로 하는 패턴 식별
+
+### 3. 도구 및 라이브러리 (Tools and Libraries)
+   - **BeautifulSoup**: HTML과 XML 문서를 파싱하는 파이썬 라이브러리로, 파싱된 트리를 쉽게 검색하고 수정할 수 있습니다.
+   - **Requests**: 웹 페이지에 요청을 보내는 데 사용되는 간단하고 우아한 HTTP 라이브러리.
+   - **Selenium**: 파이썬을 통해 웹 브라우저와 상호작용할 수 있도록 하는 도구로, 동적 콘텐츠 스크래핑에 유용합니다.
+   - **lxml** : XPath 사용을 가능하게 하는 빠르고 성능이 뛰어난 XML 및 HTML 처리 라이브러리.
+
+
+### 4\. 설치 및 실행 방법 \(Installation\)
+1. 필요한 라이브러리를 설치합니다.
  
+    ```
+    pip install selenium beautifulsoup4 lxml
+    ```
+2. 프로젝트를 로컬에 클론합니다.
+    ```
+    git clone -b master https://github.com/rusharp1/selenium.git
+    ```
+3. ChromeDriver를 설치하고, 시스템 PATH에 추가합니다. Chrome 버전과 맞는 드라이버를 다운로드해야 합니다.
+4. 해당 프로젝트 위치로 이동합니다.
+    ```
+    cd ./selenium/"selenium 기초"
+    ```
+5. 원하는 프로젝트를 실행합니다.
+
+    ```
+    파일명.py
+    ```
+
+## 4\. LICENSE
+
+이 프로젝트는 [MIT License](LICENSE) 에 따라 라이선스가 부여됩니다.
+
+<img src="https://capsule-render.vercel.app/api?type=waving&amp;color=BDBDC8&amp;height=150&amp;section=footer">
+
 
