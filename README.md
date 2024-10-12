@@ -126,40 +126,41 @@
 
 ### 1\. 프로젝트 목록
 #### 1. 프로젝트 개요 (Introduction)
-- 이 프로젝트는 Selenium을 사용하여 네이버 호텔 예약 페이지에서 자동으로 숙소를 검색하고 필터링하는 스크립트입니다. Excel 파일에서 데이터를 읽어와 사용자가 지정한 조건에 따라 호텔을 검색합니다. 
+   - 이 프로젝트는 Selenium을 사용하여 네이버 호텔 예약 페이지에서 자동으로 숙소를 검색하고 필터링하는 스크립트입니다. Excel 파일에서 데이터를 읽어와 사용자가 지정한 조건에 따라 호텔을 검색합니다. 
+#### 2. 파일 구조 및 기능 설명
+1. 파일 구조
+   ```
+   project_directory/
+   ├── selenium/
+   │   └── naver_숙소예약_자동화/
+   │       ├── data_value.xlsx         # 호텔 검색에 사용할 데이터 파일
+   │       ├── get_data_excel.py       # Excel에서 데이터 읽기
+   │       ├── hotel_list_filtering.py # 호텔 필터링 기능
+   │       ├── main.py                 # 실행 스크립트
+   │       ├── select_element.py       # 요소 선택 기능
+   │       └── test_hotelnaver.py      # 호텔 검색
+   ```
 
-#### 2. 파일 구조
-```
-project_directory/
-├── selenium/
-│   └── naver_숙소예약_자동화/
-│       ├── data_value.xlsx         # 호텔 검색에 사용할 데이터 파일
-│       ├── get_data_excel.py       # Excel에서 데이터 읽기
-│       ├── hotel_list_filtering.py # 호텔 필터링 기능
-│       ├── main.py                 # 실행 스크립트
-│       ├── select_element.py       # 요소 선택 기능
-│       └── test_hotelnaver.py      # 호텔 검색
-```
+2. get_data_excel.py
+   - Excel 파일에서 호텔 검색에 필요한 데이터를 읽어오는 모듈입니다.
 
-#### 3. get_data_excel.py
-- Excel 파일에서 호텔 검색에 필요한 데이터를 읽어오는 모듈입니다.
+3. hotel_list_filtering.py
+   - 호텔 검색 후 필터링 기능을 담당합니다. 성급, 가격, 숙박 유형 등의 필터를 설정할 수 있습니다.
 
-#### 4. hotel_list_filtering.py
-- 호텔 검색 후 필터링 기능을 담당합니다. 성급, 가격, 숙박 유형 등의 필터를 설정할 수 있습니다.
+4. main.py
+   - 프로그램의 진입점입니다. 네이버 호텔 예약 페이지로 이동하여 검색을 시작합니다.
 
-#### 5. main.py
-- 프로그램의 진입점입니다. 네이버 호텔 예약 페이지로 이동하여 검색을 시작합니다.
+5. select_element.py
+   - Selenium을 사용하여 웹 페이지에서 특정 요소를 선택하는 기능을 제공합니다.
 
-#### 6. select_element.py
-- Selenium을 사용하여 웹 페이지에서 특정 요소를 선택하는 기능을 제공합니다.
+6. test_hotelnaver.py
+   - 네이버 호텔 검색을 위한 모듈입니다. 위치, 체크인/체크아웃 날짜, 인원 수 등을 설정합니다.
+### 3. 명령어 실행 예시
+1. 명령어 실행 예시
 
-#### 7. test_hotelnaver.py
-- 네이버 호텔 검색을 위한 모듈입니다. 위치, 체크인/체크아웃 날짜, 인원 수 등을 설정합니다.
-
-#### 8. 명령어 실행 예시
    <details>
-       <summary>명령어 실행 예시 보기/접기</summary>
-         https://www.youtube.com/playlist?list=PLU-O7pELt5-BAQx86vsYJsLmj3wHMa1rO
+      <summary>명령어 실행 예시 보기/접기</summary>
+      https://www.youtube.com/playlist?list=PLU-O7pELt5-BAQx86vsYJsLmj3wHMa1rO
    </details>
     
 ***
@@ -276,7 +277,8 @@ project_directory/
     ```
 
 <br>
-## 4\. LICENSE
+
+## 4. LICENSE
 
 이 프로젝트는 [MIT License](LICENSE) 에 따라 라이선스가 부여됩니다.
 
