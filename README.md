@@ -160,7 +160,7 @@
 
    <details>
       <summary>명령어 실행 예시 보기/접기</summary>
-      https://www.youtube.com/playlist?list=PLU-O7pELt5-BAQx86vsYJsLmj3wHMa1rO
+         https://www.youtube.com/playlist?list=PLU-O7pELt5-BAQx86vsYJsLmj3wHMa1rO
    </details>
     
 ***
