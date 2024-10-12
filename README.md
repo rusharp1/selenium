@@ -157,9 +157,10 @@ project_directory/
 - 네이버 호텔 검색을 위한 모듈입니다. 위치, 체크인/체크아웃 날짜, 인원 수 등을 설정합니다.
 
 #### 8. 명령어 실행 예시
-<details>
-    <summary>명령어 실행 예시 보기/접기</summary>
-</details>
+   <details>
+       <summary>명령어 실행 예시 보기/접기</summary>
+         https://www.youtube.com/playlist?list=PLU-O7pELt5-BAQx86vsYJsLmj3wHMa1rO
+   </details>
     
 ***
 ### 2\. 사전 요구사항 \(Prerequisites\)
