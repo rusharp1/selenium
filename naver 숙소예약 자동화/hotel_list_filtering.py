@@ -1,14 +1,10 @@
 import time
-import pytest
-from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from datetime import datetime, timedelta
 from get_data_excel import filter_get_excel_data
 from select_element import select_element, select_elements
-from selenium.webdriver.common.action_chains import ActionChains
-
 
 # 성급 설정
 def select_star(browser, star, filter_Value):
@@ -90,7 +86,7 @@ if __name__== "__main__":
     url = "https://hotels.naver.com/places/KR1000073?checkIn=2024-07-28&checkOut=2024-07-30&adultCnt=2&childAges="
     browser = webdriver.Chrome()
     browser.get(url)
-    file_path = 'data_value.xlsx'
+    file_path = r"selenium\naver 숙소예약 자동화\data_value.xlsx"
     excel_data_list = filter_get_excel_data(file_path)
     
     hotel_naver_filtering(browser, excel_data_list[0])

@@ -7,6 +7,7 @@ def main():
     browser = webdriver.Chrome()
     browser.get(url)
     hotel_naver_search(browser)
+    input("")
 
 if __name__== "__main__":
    main()

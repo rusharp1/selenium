@@ -1,5 +1,4 @@
 import time
-import pytest
 from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -15,7 +14,6 @@ import hotel_list_filtering
 
 idx = 0
 
-@pytest.fixture
 def browser():
     url = "https://hotels.naver.com/"
     browser_instance = webdriver.Chrome()
@@ -47,22 +45,29 @@ def select_today_tomorrow(browser):
     ##################################### 2번째 방법 #####################################
     # today.day 라는 class명을 가진 td 클릭.
     # today 라는 class 명윽 자니 td중 하위 button을 가지고있는 element 클릭
-    start_date = select_element(browser, By.CSS_SELECTOR, "td.day.today")
+    start_date = select_element(browser, By.XPATH, "//i[text()='오늘']/..")
+    start_date_num = int(start_date.find_element(By.CLASS_NAME, "num").text)
     try:
         start_date.click()
     except:
         browser.execute_script("arguments[0].click();", start_date)
-    end_date = select_element(browser, By.XPATH, "//td[@class='day']/button")
+    
+    end_date = select_element(browser, By.XPATH, f"//b[text()='{start_date_num + 1}']/..")
     try:
         end_date.click()  
     except:
         browser.execute_script("arguments[0].click();", end_date)
 
-def select_big_browser_date(browser, date_value, one_year_later_str):
+def select_big_browser_date(browser, date_value):
     global idx
+    one_year_later = datetime.today() + timedelta(days=366)
+    date_obj = datetime.strptime(date_value, '%Y.%m.%d')
+    
+    if date_obj > one_year_later:
+        raise ValueError("일정을 찾을 수 없습니다.")
     while True:
         # 달력 element를 찾은 뒤, yyyy.mm값을 추철함.
-        # 
+
         calendar_list = select_elements(browser, By.CSS_SELECTOR, "div.sc-eqUAAy.czFkbX")
         calendar_list = [c.text.replace(" ", "") for c in calendar_list]
         # 설정한 date_list 값 중에 일치하는 값이 있는지 확인
@@ -72,9 +77,6 @@ def select_big_browser_date(browser, date_value, one_year_later_str):
             select_element(browser, By.CSS_SELECTOR, "button.sc-dcJsrY.sc-gsFSXq.imDkSH.glDkIk.next").click()
             idx+=1
             continue
-        else:
-            if one_year_later_str in calendar_list[1]:
-                raise ValueError("일정을 찾을 수 없습니다.")
         # True가 있는 위치를 추출 후 day 클릭.
         calendar_month = select_elements(browser, By.CSS_SELECTOR, "div.sc-gEvEer.hMiJLh.month")[is_match.index(True)]
         calendar_day = select_element(calendar_month, By.XPATH, \
@@ -91,19 +93,24 @@ def test_select_checkin_checkout_dates(browser, date_list):
         date_list[0], date_list[1] = date_list[1], date_list[0]
     # 달력이 2개만 있는 경우, 다음버튼을 눌러서 날짜를 찾는다.
     try:
-        one_year_later = datetime.today() + timedelta(days=365)
-        one_year_later_str = one_year_later.strftime('%Y.%m')
         idx+=1
         for _ in range(idx):
                 select_element(browser, By.CSS_SELECTOR, "button.sc-dcJsrY.sc-iGgWBj.imDkSH.iWZXNz.prev").click()
                 idx -=1
         for date_value in date_list:
             # 시작일, 종료일을 각각 선택함.
-            select_big_browser_date(browser, date_value, one_year_later_str)
+            select_big_browser_date(browser, date_value)
     # 달력이 3개 이상 있는 경우, 다음버튼을 누를 필요 없다.
     except:
-        try:
+        try:                
             for date_value in date_list:
+                idx = -1
+                # 값이 1년 이후로 되어있으면 에러 발생시킴
+                one_year_later = datetime.today() + timedelta(days=366)
+                date_obj = datetime.strptime(date_value, '%Y.%m.%d')
+                if date_obj > one_year_later:
+                    raise ValueError("일정을 찾을 수 없습니다.")
+
                 actions = ActionChains(browser)
                 # 달력 element를 찾은 뒤, yyyy.mm값을 추철함.
                 calendar_list = select_elements(browser, By.CSS_SELECTOR, "div.sc-dAlyuH.cKxEnD")
@@ -121,7 +128,6 @@ def test_select_checkin_checkout_dates(browser, date_list):
                     calendar_day.click()
                 except:
                     browser.execute_script("arguments[0].click();", calendar_day)
-                
         except:
             print("입력한 일정을 찾을 수 없습니다. 오늘~내일 일정으로 설정합니다.")
             for _ in range(idx):
@@ -155,10 +161,8 @@ def test_select_member(browser, target_value, kids_ages):
         for num, kids_ages_value in enumerate(kids_ages):
             select_elements(browser, By.XPATH, "//option[@value='{}']".format(kids_ages_value))[num].click()
 
-
 def hotel_naver_search(browser):
-
-    file_path = 'data_value.xlsx'
+    file_path = r"selenium\naver 숙소예약 자동화\data_value.xlsx"
     excel_data_list = search_get_excel_data(file_path)
     for index, ed in enumerate(excel_data_list):
         try:
@@ -181,10 +185,13 @@ def hotel_naver_search(browser):
             # 
             # 검색결과가 나올 때까지 기다림. 최대 2회.
             try:
+                # 검색 결과가 있는 경우 확인함
                 select_element(browser, By.CLASS_NAME, "SearchList_anchor__rS3VX")
+                print("검색 완료")
             except:
                 try:
-                    select_element(browser, By.CLASS_NAME, "SearchList_anchor__rS3VX")
+                    # 검색 결과가 없는 경우 확인함
+                    select_element(browser, By.CLASS_NAME, "Condition_title__THiSa")
                     print("검색 완료")
                 except:
                     print("결과를 찾을 수 없습니다.")
@@ -200,6 +207,7 @@ def hotel_naver_search(browser):
             print(f"{index+1}번째 값 테스트 성공했습니다.")
         except:
             print(f"{index+1}번째 값에 문제가 있습니다. 다시한 번 확인해주세요.")
+            browser.get("https://hotels.naver.com/")
 
     
 if __name__== "__main__":

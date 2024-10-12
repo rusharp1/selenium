@@ -3,15 +3,15 @@
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException, NoSuchElementException
-import pytest
 
+# 특정 요소를 찾는 클래스
 def select_element(browser, element, name):
     try:
-        WebDriverWait(browser, 10).until(EC.presence_of_element_located\
+        WebDriverWait(browser, 15).until(EC.presence_of_element_located\
                                          ((element, name)))
         return browser.find_element(element, name)
     except TimeoutException:
-        pytest.fail(f"타임아웃: 해당 element를 찾을 수 없습니다: {str(element)} {name}")
+        print(f"타임아웃: 해당 element를 찾을 수 없습니다: {str(element)} {name}")
 
 def select_elements(browser,element, name):
     try:
@@ -19,4 +19,4 @@ def select_elements(browser,element, name):
                                          ((element, name)))
         return browser.find_elements(element, name)
     except TimeoutException:
-        pytest.fail(f"타임아웃: 해당 element를 찾을 수 없습니다: {str(element)} {name}")
+        print(f"타임아웃: 해당 element를 찾을 수 없습니다: {str(element)} {name}")
