@@ -220,7 +220,7 @@
 
 ### 1\. 개요 \(Overview\)
 
-#### 1\. 저장소 개요 \(Repository Overview\)
+#### 1\. repository 개요 \(Repository Overview\)
 
 * 이 저장소는 [Inflearn](https://www.inflearn.com/course/%ED%8C%8C%EC%9D%B4%EC%8D%AC-%EC%9B%B9-%EC%8A%A4%ED%81%AC%EB%9E%98%ED%95%91#curriculum)의 Selenium 기초 강의를 기반으로 한 연습 문제와 예제를 담고 있습니다.
 * 더 자세한 내용을 보고싶다면, [blog](https://rusharp.tistory.com/category/python/python_selenium) 에서 확인 가능합니다.
